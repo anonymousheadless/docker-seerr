@@ -280,10 +280,14 @@ If you want to make local modifications to these images for development purposes
 ```bash
 git clone https://github.com/linuxserver/docker-overseerr.git
 cd docker-overseerr
-docker build \
-  --no-cache \
-  --pull \
-  -t lscr.io/linuxserver/overseerr:latest .
+docker build `
+  --no-cache `
+  --pull `
+  --build-arg BUILD_DATE=$(Get-Date -Format 'yyyy-MM-ddTHH:mm:ssZ') `
+  --build-arg VERSION=1.0.0 `
+  --build-arg SEERR_VERSION=3.1.0 `
+  -t anonymousheadless/seerr:latest `
+  .
 ```
 
 The ARM variants can be built on x86_64 hardware and vice versa using `lscr.io/linuxserver/qemu-static`
